@@ -22,10 +22,12 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfig(
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
+    // Password encryption
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -38,12 +40,14 @@ public class SecurityConfig {
         CorsConfiguration configuration =
                 new CorsConfiguration();
 
+        // Frontend URLs
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:5173",
                 "http://localhost:5174",
                 "https://realestatemanagementsystem-beta.vercel.app"
         ));
 
+        // Allowed HTTP methods
         configuration.setAllowedMethods(Arrays.asList(
                 "GET",
                 "POST",
@@ -52,11 +56,13 @@ public class SecurityConfig {
                 "OPTIONS"
         ));
 
+        // Allowed request headers
         configuration.setAllowedHeaders(Arrays.asList(
                 "Authorization",
                 "Content-Type"
         ));
 
+        // We are using JWT, so cookies are not required
         configuration.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source =
@@ -70,45 +76,58 @@ public class SecurityConfig {
         return source;
     }
 
+    // Spring Security configuration
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
 
         http
-            .csrf(csrf -> csrf.disable())
+                // Disable CSRF because we are using REST APIs + JWT
+                .csrf(csrf -> csrf.disable())
 
-            .cors(cors -> cors.configurationSource(
-                    corsConfigurationSource()
-            ))
+                // Enable CORS
+                .cors(cors -> cors.configurationSource(
+                        corsConfigurationSource()
+                ))
 
-            .sessionManagement(session ->
-                    session.sessionCreationPolicy(
-                            SessionCreationPolicy.STATELESS
-                    )
-            )
+                // JWT authentication is stateless
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(
+                                SessionCreationPolicy.STATELESS
+                        )
+                )
 
-            .authorizeHttpRequests(auth -> auth
+                // Authorization rules
+                .authorizeHttpRequests(auth -> auth
 
-                // Login and registration are public
-                .requestMatchers("/api/auth/**").permitAll()
+                        // Login and registration
+                        // do not require JWT
+                        .requestMatchers(
+                                "/api/auth/**"
+                        ).permitAll()
 
-                // Allow CORS preflight requests
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // Allow browser CORS preflight
+                        .requestMatchers(
+                                HttpMethod.OPTIONS,
+                                "/**"
+                        ).permitAll()
 
-                // Anyone can view properties
-                .requestMatchers(
-                        HttpMethod.GET,
-                        "/api/properties/**"
-                ).permitAll()
+                        // Anyone can view properties
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/properties/**"
+                        ).permitAll()
 
-                // Other requests require JWT
-                .anyRequest().authenticated()
-            )
+                        // POST, PUT and DELETE
+                        // require authentication
+                        .anyRequest().authenticated()
+                )
 
-            .addFilterBefore(
-                    jwtAuthenticationFilter,
-                    UsernamePasswordAuthenticationFilter.class
-            );
+                // JWT filter
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                );
 
         return http.build();
     }
