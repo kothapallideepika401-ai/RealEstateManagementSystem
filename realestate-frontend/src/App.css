@@ -1,0 +1,423 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 70px;
+    background: #12355b;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+}
+
+.logo h2 {
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.login-btn,
+.logout-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-btn {
+    background: white;
+    color: #12355b;
+}
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.welcome {
+    font-weight: bold;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 450px;
+
+    background:
+        linear-gradient(
+            rgba(18, 53, 91, 0.75),
+            rgba(18, 53, 91, 0.75)
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    max-width: 700px;
+    padding: 30px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    display: inline-block;
+    background: white;
+    color: #12355b;
+    padding: 13px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* PROPERTY FORM */
+
+.property-form-section {
+    background: white;
+    margin: 40px auto;
+    padding: 35px;
+    width: 90%;
+    max-width: 1000px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.property-form-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.property-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.property-form input,
+.property-form select,
+.property-form textarea {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    font-size: 15px;
+}
+
+.property-form textarea {
+    grid-column: 1 / 3;
+    min-height: 100px;
+}
+
+.form-buttons {
+    grid-column: 1 / 3;
+
+    display: flex;
+    gap: 10px;
+}
+
+.form-buttons button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+
+    background: #12355b;
+    color: white;
+
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #777 !important;
+}
+
+
+/* PROPERTIES */
+
+.properties-section {
+    padding: 60px 7%;
+}
+
+.properties-section h2 {
+    text-align: center;
+    font-size: 34px;
+}
+
+.section-subtitle {
+    text-align: center;
+    margin: 10px 0 35px;
+    color: #666;
+}
+
+.property-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 25px;
+}
+
+.property-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+}
+
+.property-image {
+    height: 180px;
+
+    background: #dce7f3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 70px;
+}
+
+.property-content {
+    padding: 22px;
+}
+
+.property-content h3 {
+    margin-bottom: 10px;
+    color: #12355b;
+}
+
+.property-content h4 {
+    color: #e67e22;
+    margin: 12px 0;
+}
+
+.property-content p {
+    margin: 7px 0;
+    color: #555;
+}
+
+.description {
+    font-size: 14px;
+}
+
+
+/* CARD BUTTONS */
+
+.card-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    padding: 9px 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: #3498db;
+}
+
+.delete-btn {
+    background: #e74c3c;
+}
+
+
+/* ABOUT */
+
+.about-section {
+    background: white;
+    text-align: center;
+    padding: 70px 15%;
+}
+
+.about-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: #12355b;
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+
+/* LOGIN / REGISTER */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f1f4f8;
+}
+
+.auth-box {
+    width: 400px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+}
+
+.auth-box h2 {
+    color: #12355b;
+    margin-bottom: 10px;
+}
+
+.auth-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-box input {
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+}
+
+.auth-box button {
+    padding: 13px;
+
+    background: #12355b;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+.auth-box a {
+    color: #12355b;
+    text-decoration: none;
+}
+
+.auth-link {
+    margin-top: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .property-form {
+        grid-template-columns: 1fr;
+    }
+
+    .property-form textarea,
+    .form-buttons {
+        grid-column: 1;
+    }
+
+    .auth-box {
+        width: 90%;
+    }
+}
