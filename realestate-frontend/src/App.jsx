@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import axios from "axios";
 
 import {
@@ -12,9 +11,12 @@ import {
 import Login from "./components/Login";
 import Register from "./components/Register";
 
+// Railway Backend URL
+const API_BASE_URL =
+    "https://realestatemanagementsystem-production.up.railway.app";
 
 const API_URL =
-    "http://localhost:8080/api/properties";
+    `${API_BASE_URL}/api/properties`;
 
 
 function Home() {
@@ -24,7 +26,6 @@ function Home() {
     const [properties, setProperties] = useState([]);
 
     const [formData, setFormData] = useState({
-
         title: "",
         description: "",
         location: "",
@@ -34,7 +35,6 @@ function Home() {
         bathrooms: "",
         area: "",
         status: "AVAILABLE"
-
     });
 
     const [editingId, setEditingId] = useState(null);
@@ -351,9 +351,11 @@ function Home() {
             <nav className="navbar">
 
                 <div className="logo">
+
                     <h2>
                         RealEstate
                     </h2>
+
                 </div>
 
 
