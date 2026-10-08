@@ -19,7 +19,13 @@ import com.realestate.realestate_backend.service.PropertyService;
 
 @RestController
 @RequestMapping("/api/properties")
-@CrossOrigin(origins = "http://localhost:5173")
+
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "https://realestatemanagementsystem-beta.vercel.app"
+})
+
 public class PropertyController {
 
     private final PropertyService propertyService;
@@ -57,9 +63,12 @@ public class PropertyController {
     public ResponseEntity<PropertyEntity> getPropertyById(
             @PathVariable Long id) {
 
-        return propertyService.getPropertyById(id)
+        return propertyService
+                .getPropertyById(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(
+                        ResponseEntity.notFound().build()
+                );
     }
 
     // UPDATE PROPERTY
@@ -69,7 +78,10 @@ public class PropertyController {
             @RequestBody PropertyEntity property) {
 
         PropertyEntity updatedProperty =
-                propertyService.updateProperty(id, property);
+                propertyService.updateProperty(
+                        id,
+                        property
+                );
 
         return ResponseEntity.ok(updatedProperty);
     }
